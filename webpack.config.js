@@ -6,6 +6,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const Terserplugin = require('terser-webpack-plugin');
 const DotEnv = require('dotenv-webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { webpack } = require('webpack');
 
 module.exports = {
     entry: './src/index.js',
@@ -96,7 +97,10 @@ module.exports = {
             ]
         }),
         new DotEnv(),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new webpack.DefinePlugin({
+            'process.env.API': JSON.stringify(process.env.API),
+          })
     ],
     optimization: {
         minimize: true,
