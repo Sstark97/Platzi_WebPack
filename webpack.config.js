@@ -20,7 +20,9 @@ module.exports = {
             '@utils': path.resolve(__dirname,'src/utils/'),
             '@templates': path.resolve(__dirname,'src/templates/'),
             '@styles': path.resolve(__dirname,'src/styles/'),
-            '@images': path.resolve(__dirname,'src/assets/images/')
+            '@images': path.resolve(__dirname,'src/assets/images/'),
+            process: "process/browser"
+             
         }
     },
     module: {
@@ -58,7 +60,7 @@ module.exports = {
                     }
                 }
             }, 
-            
+
             {
                 test: /node_modules\/vfile\/core\.js/,
                 use: [{
