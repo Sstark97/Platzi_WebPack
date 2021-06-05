@@ -61,28 +61,11 @@ module.exports = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
+        new HtmlWebPackPlugin({
+            inject: true,
             template: './public/index.html',
-            templateParameters(compilation, assets, options) {
-              return {
-                compilation: compilation,
-                webpack: compilation.getStats().toJson(),
-                webpackConfig: compilation.options,
-                htmlWebpackPlugin: {
-                  files: assets,
-                  options: options
-                },
-                process,
-              };
-            },
-            minify: {
-              collapseWhitespace: true,
-              removeAttributeQuotes: true,
-              removeComments: true
-            },
-            nodeModules: false
-          }),
+            filename: './index.html'
+        }),
 
         new MiniCssExtractPlugin({
             filename: 'assets/[name].[contenthash].css'
@@ -96,8 +79,5 @@ module.exports = {
             ]
         }),
         new DotEnv(),
-        new webpack.DefinePlugin({
-            "process.env.API": JSON.stringify(process.env.API)
-        })
     ]
 }
