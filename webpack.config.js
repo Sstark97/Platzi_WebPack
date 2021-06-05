@@ -28,6 +28,9 @@ module.exports = {
                 'stylus-loader'
                 ]
 
+            }, {
+                test: /\.png/,
+                type: 'asset/resource'
             }
         ]
     },
