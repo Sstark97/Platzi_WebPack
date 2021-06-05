@@ -61,23 +61,28 @@ module.exports = {
         ]
     },
     plugins: [
-        new HtmlWebPackPlugin({
-            inject: true,
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
             template: './public/index.html',
-            filename: './index.html',
             templateParameters(compilation, assets, options) {
-                return {
-                  compilation: compilation,
-                  webpack: compilation.getStats().toJson(),
-                  webpackConfig: compilation.options,
-                  htmlWebpackPlugin: {
-                    files: assets,
-                    options: options
-                  },
-                  process,
-                };
-            }
-        }),
+              return {
+                compilation: compilation,
+                webpack: compilation.getStats().toJson(),
+                webpackConfig: compilation.options,
+                htmlWebpackPlugin: {
+                  files: assets,
+                  options: options
+                },
+                process,
+              };
+            },
+            minify: {
+              collapseWhitespace: true,
+              removeAttributeQuotes: true,
+              removeComments: true
+            },
+            nodeModules: false
+          }),
 
         new MiniCssExtractPlugin({
             filename: 'assets/[name].[contenthash].css'
