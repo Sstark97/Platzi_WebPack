@@ -3,6 +3,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const DotEnv = require('dotenv-webpack');
+const { webpack }  = require('webpack');
 
 module.exports = {
     entry: './src/index.js',
@@ -78,5 +79,8 @@ module.exports = {
             ]
         }),
         new DotEnv(),
+        new webpack.DefinePlugin({
+            "process.env.API": JSON.stringify(process.env.API)
+        })
     ]
 }
